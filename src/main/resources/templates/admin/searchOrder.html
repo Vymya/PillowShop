@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/adminProduct.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+    <title>Поиск по заказам</title>
+</head>
+<body>
+
+<div class="menu">
+  <p class="logo">Кабинет администратора</p>
+  <a class="button" th:href="@{/admin/order/search}">Поиск заказов</a>
+  <a class="button" href="/admin/product/add">Добавить товары</a>
+  <form method="post" th:action="@{/logout}">
+    <input  class="button" type="submit" value="Выйти из личного кабинета">
+  </form>
+</div>
+<div class="back">
+  <a class="button" href="/admin">Вернуться в админ. панель</a>
+</div>
+
+
+  <h3>Поиск по заказам</h3>
+<div class="authAdmin">
+  <form th:method="post" th:action="@{/admin/order/search}" style="width: 500px">
+
+      <label  for="search">Введите последние 4 цифры заказа: </label>
+      <input class="inputAdmin" name="search" id="search" th:value="*{orderNumberSearch}">
+
+      <input class="button" type="submit" value="Поиск">
+
+  </form>
+</div>
+
+
+
+  <h3>Результат поиска: </h3>
+<div class="productCart">
+  <div class="cartAdmin" th:each="element : ${searchOrder}">
+    <p class="text" th:text="'Заказ № ' + ${element.getNumber()}"></p>
+    <p class="text" th:text="'Наименование: ' + ${element.getProduct().getTitle()}"></p>
+    <p class="text" th:text="'Количество: ' + ${element.getCount()}"></p>
+    <p class="text" th:text="'Стоимость заказа: ' + ${element.getPrice()}"></p>
+    <p class="text" th:text="'Дата заказа: ' + ${#temporals.format(element.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p class="text" th:text="'Статус заказа: ' + ${element.getOrderStatus()}"></p>
+
+    <div class="buttonGrid">
+    <a class="adminEditOrder1" th:href="@{admin/order/edit/{id}(id=${element.getId()})}">Изменить статус заказа</a>
+    </div>
+  </div>
+</div>
+ <!-- <h3>Список всех заказов: </h3>
+  <div th:each="element : ${orders}">
+    <h3 th:text="'Заказ № ' + ${element.getNumber()}"></h3>
+    <p th:text="'Наименование: ' + ${element.getProduct().getTitle()}"></p>
+    <p th:text="'Количество: ' + ${element.getCount()}"></p>
+    <p th:text="'Стоимость заказа: ' + ${element.getPrice()}"></p>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(element.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p th:text="'Статус заказа: ' + ${element.getOrderStatus()}"></p>
+    <a th:href="@{admin/order/edit/{id}(id=${element.getId()})}">Изменить статус заказа</a>
+  </div>-->
+</body>
+</html>

@@ -1,0 +1,101 @@
+.cartAdmin
+{
+    padding-bottom: 20px;
+    max-width: 500px;
+    background: white;
+}
+
+.text
+{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.buttonAdmin
+{
+    color: white;
+    text-decoration: none;
+    padding: 15px 12px;
+    border-radius: 3px;
+    background: #1cbc11;
+    display: block;
+    margin-left: 30px;
+
+}
+
+.buttonAdmin:hover {
+    background-color: #14a20a;
+}
+
+.buttonAdmin1
+{
+    color: white;
+    text-decoration: none;
+    padding: 15px 12px;
+    border-radius: 3px;
+    background: #1cbc11;
+    display: block;
+    margin: 0px 30px;
+    text-align: center;
+}
+
+.adminH
+{
+    font-weight: bold;
+    font-size: 28px;
+    color: #485159;
+    text-align: center;
+    margin: 50px 0px 20px 0px;
+}
+
+.adminEditOrder
+{
+color: white;
+text-decoration: none;
+/* padding: 15px 20px; */
+border-radius: 3px;
+background: #1cbc11;
+display: block;
+margin: 20px 0px 10px 0px;
+}
+
+select
+{
+    margin-top: 12px;
+}
+
+.adminEditOrder1
+{
+color: white;
+text-decoration: none;
+padding: 15px 20px;
+border-radius: 3px;
+background: #1cbc11;
+display: block;
+margin: 20px 0px 10px 30px;
+}
+
+.authAdmin {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    align-content: center;
+    justify-items: center;
+
+    max-width: max-content;
+    padding: 20px;
+    margin: 40px auto;
+    background-color: #fff;
+}
+.inputAdmin {
+    display: block;
+    width: 100%;
+    margin: 10px 0px;
+    height: 30px;
+    border: 1px solid #ccc;
+
+    font-family: inherit;
+    font-size: 16px;
+    padding-left: 10px;
+
+}

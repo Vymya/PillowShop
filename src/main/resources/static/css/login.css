@@ -1,0 +1,94 @@
+body{
+    font-family: Calibri;
+    background-color: #f8f8f8;
+}
+
+h3
+{
+    font-weight: bold;
+    font-size: 28px;
+    color: #485159;
+    text-align: center;
+    margin: 15px 0px 20px 0px;
+}
+
+.auth
+{
+    display: grid;
+    grid-template-columns: 1fr;
+
+    align-content: center;
+    justify-items: center;
+
+    max-width: max-content;
+    padding: 20px;
+    margin: 33vh auto;
+    background-color: #fff
+
+}
+
+label
+{
+    font-weight: normal;
+    font-size: 18px;
+    color: black;
+    padding-bottom: 10px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 30px;
+    border: 1px solid #ccc;
+
+    font-family: inherit;
+    font-size: 16px;
+    padding-left: 10px;
+
+}
+
+input.button{
+    display: block;
+    width: 17vw;
+    margin: 20px 0px;
+    height: 45px;
+    border: 0;
+    background-color: #1cbc11;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    color: #fff;
+}
+
+input.button:hover {
+    background-color: #14a20a;
+}
+
+.error
+{
+    margin: 10px 0px;
+    font-weight: normal;
+}
+
+.registration
+{
+    margin: 5px 0px;
+    font-weight: bold;
+    color: #485159;
+}
+
+.registration:hover {
+    color: #14a20a;
+}
+
+.formLabel
+{
+   font-weight: lighter;
+    padding-bottom: 5px;
+    display:inline-block;
+}

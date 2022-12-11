@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/adminProduct.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+    <title>Личный кабинет администратора</title>
+</head>
+<body>
+
+    <div class="menu">
+        <p class="logo">Кабинет администратора</p>
+            <a class="button" th:href="@{/admin/order/search}">Поиск заказов</a>
+        <a class="button" href="/admin/product/add">Добавить товары</a>
+        <form method="post" th:action="@{/logout}">
+            <input  class="button" type="submit" value="Выйти из личного кабинета">
+        </form>
+    </div>
+
+
+
+
+    <h3 class="adminH">Список активных заказов </h3>
+    <div class="productCart">
+    <div class="cartAdmin" th:each="element : ${orders}">
+        <p class="text" th:text="'Заказ № ' + ${element.getNumber()}"></p>
+        <p class="text" th:text="'Наименование: ' + ${element.getProduct().getTitle()}"></p>
+        <p class="text" th:text="'Количество: ' + ${element.getCount()}"></p>
+        <p class="text" th:text="'Стоимость заказа: ' + ${element.getPrice()}"></p>
+        <p class="text" th:text="'Дата заказа: ' + ${#temporals.format(element.getDateTime(), 'dd-MMM-yyyy')}"></p>
+        <p class="text" th:text="'Статус заказа: ' + ${element.getOrderStatus()}"></p>
+
+        <div class="buttonGrid">
+        <a class="buttonAdmin" th:href="@{admin/order/edit/{id}(id=${element.getId()})}">Изменить статус заказа</a>
+        </div>
+    </div>
+    </div>
+
+    <h3 class="adminH">Редактировать текущие товары </h3>
+    <div class="productCart">
+    <div class="cartAdmin" th:each="product : ${products}">
+        <p class="text" th:text="'Наименование: ' + ${product.getTitle()}"/>
+        <p class="text" th:text="'Категория: ' + ${product.getCategory().getName()}"/>
+        <p class="text" th:text="'Описание: ' + ${product.getDescription()}"/>
+        <p class="text" th:text="'Цена: ' + ${product.getPrice()}"/>
+        <p class="text" th:text="'Склад: ' + ${product.getWarehouse()}"/>
+        <p class="text" th:text="'Продавец: ' + ${product.getSeller()}"/>
+
+        <div class="buttonGrid">
+        <a class="buttonAdmin1" th:href="@{admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
+        <a class="buttonAdmin1" th:href="@{admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
+        </div>
+
+    </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+    <title>Информация о товаре</title>
+</head>
+<body>
+
+<!--Меню-->
+<div class="menu">
+  <p class="logo">Магазин спальных принодлежностей</p>
+  <form method="get" th:action="@{/orders}">
+    <input class="button" type="submit" value="История заказов">
+  </form>
+  <form method="post" th:action="@{/logout}">
+    <input  class="button" type="submit" value="Выйти из личного кабинета">
+  </form>
+  <a   th:href="@{/cart}">   <img th:src="@{https://537317.selcdn.ru/video/bascet.png}"></a>
+  <form method="get" th:action="@{/cart}"></form>
+</div>
+
+<!--Кнопка назад-->
+<div class="back">
+  <a class="button" href="/index">Вернуться в каталог</a>
+</div>
+
+
+  <h3>Информация о товаре</h3>
+
+<div class="aboutCart">
+  <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+  <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+  <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+  <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+  <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+  <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+</div>
+
+<div class="productCart">
+  <div th:each="img : ${product.getImageList()}">
+    <img class="imgCart" th:src="'/img/' + ${img.getFileName()}" >
+  </div>
+</div>
+</body>
+</html>

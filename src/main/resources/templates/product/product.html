@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+</head>
+<body>
+
+<!--Меню-->
+<div class="menu">
+    <p class="logo">Магазин спальных принодлежностей</p>
+    <form method="get" th:action="@{/orders}">
+        <input class="button" type="submit" value="История заказов">
+    </form>
+    <form method="post" th:action="@{/logout}">
+        <input  class="button" type="submit" value="Выйти из личного кабинета">
+    </form>
+    <a   th:href="@{/cart}">   <img th:src="@{https://537317.selcdn.ru/video/bascet.png}"></a>
+    <form method="get" th:action="@{/cart}"></form>
+</div>
+
+<!--Кнопка назад-->
+<div class="back">
+    <a class="button" href="/index">Вернуться в каталог</a>
+</div>
+
+<!--<div class="search">
+    <H3>Поиск, фильтр и сортировка</H3>
+    <form  th:method="post" th:action="@{/product/search}" style="width: 500px">
+        <p class="podpisi" for="search">Поиск по товару </p>
+        <input class="inpt" name="search" id="search" placeholder="Введите название товара">
+        <p class="podpisi">Фильтрация по диапозону цен, ₽</p>
+        <input class="inpt" type="text" name="from" id="from" placeholder="Введите цену товара ОТ">
+        <input class="inpt" type="text" name="to" id="to" placeholder="Введите цену товара ДО">
+
+        <p class="podpisi">Сортировка по цене: </p>
+        <div class="categ" id="sortMarg">
+            <label for="ascendingPrice">Отсортировать по возрастанию цены: </label>
+            <input class="inpt" type="radio" id="ascendingPrice" name="sortPrice" value="sortedByAscendingPrice">
+        </div>
+        <div class="categ">
+            <label for="descendingPrice">Отсортировать по убыванию цены: </label>
+            <input class="inpt" type="radio" id="descendingPrice" name="sortPrice" value="sortedByDescendingPrice">
+        </div>
+        <p class="podpisi">Фильтрация по категории: </p>
+        <div class="categ">
+            <label for="pillow">Подушки</label>
+            <input type="radio" id="pillow" name="productCat" value="pillow">
+        </div>
+        <div class="categ">
+            <label for="pillow">Наволочки</label>
+            <input type="radio" id="pillowCase" name="productCat" value="pillowCase">
+        </div>
+        <input class="button" type="submit" value="Применить">
+    </form>
+</div>-->
+
+    <h3>Результаты поиска: </h3>
+<div class="productCart">
+    <div class="cart" th:each="element : ${products}">
+        <img class="imgCart" th:src="'/img/' + ${element.imageList[0].getFileName()}" >
+        <a class="titleCart"  th:text="${element.getTitle()}"></a>
+        <p class="price" th:text="'Цена: ' + ${element.getPrice}"/>
+        <div class="buttonGrid">
+            <a class="button" type="submit" th:href="@{/product/info/{id}(id=${element.getId()})}">Подробнее о товаре</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

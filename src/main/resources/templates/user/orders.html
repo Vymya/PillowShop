@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+</head>
+<body>
+<div class="menu">
+  <p class="logo">Магазин спальных принодлежностей</p>
+  <form method="get" th:action="@{/orders}">
+    <input class="button" type="submit" value="История заказов">
+  </form>
+  <form method="post" th:action="@{/logout}">
+    <input  class="button" type="submit" value="Выйти из личного кабинета">
+  </form>
+  <a   th:href="@{/cart}">   <img th:src="@{https://537317.selcdn.ru/video/bascet.png}"></a>
+  <form method="get" th:action="@{/cart}"></form>
+</div>
+
+<div class="back">
+  <a class="button" href="/index">Вернуться в каталог</a>
+</div>
+
+  <h3>Ваши заказы</h3>
+<div class="productCart">
+  <div class="cart" th:each="element : ${orders}">
+    <img class="imgCart" th:src="'/img/' + ${element.getProduct().imageList[0].getFileName()}">
+    <p class="numberOrder" th:text="'Заказ № ' + ${element.getNumber()}"></p>
+    <p class="titleCart" th:text="'Наименование: ' + ${element.getProduct().getTitle()}"></p>
+    <p class="price" th:text="'Количество: ' + ${element.getCount()}"></p>
+    <p class="price" th:text="'Стоимость заказа: ' + ${element.getPrice()}"></p>
+    <p class="price" th:text="'Дата заказа: ' + ${#temporals.format(element.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p class="price" th:text="'Статус заказа: ' + ${element.getOrderStatus()}"></p>
+  </div>
+</div>
+</body>
+</html>

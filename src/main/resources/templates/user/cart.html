@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+</head>
+<body>
+<div class="menu">
+    <p class="logo">Магазин спальных принодлежностей</p>
+    <form method="get" th:action="@{/orders}">
+        <input class="button" type="submit" value="История заказов">
+    </form>
+    <form method="post" th:action="@{/logout}">
+        <input  class="button" type="submit" value="Выйти из личного кабинета">
+    </form>
+    <a   th:href="@{/cart}">   <img th:src="@{https://537317.selcdn.ru/video/bascet.png}"></a>
+    <form method="get" th:action="@{/cart}"></form>
+</div>
+
+<div class="back">
+    <a class="button" href="/index">Вернуться в каталог</a>
+</div>
+
+<h3>Корзина</h3>
+
+<div class="productCart">
+    <div class="cart" th:each="element : ${cartProduct}">
+        <img class="imgCart" th:src="'/img/' + ${element.imageList[0].getFileName()}" width="300px">
+        <a class="titleCart"  th:text="${element.getTitle()}"></a>
+        <p class="price" th:text="'Цена: ' + ${element.getPrice}"/>
+
+        <div class="buttonGrid">
+        <a class="button" type="submit" th:href="@{/product/info/{id}(id=${element.getId()})}">Подробнее о товаре</a>
+        <a class="buttonDel" th:href="@{/cart/delete/{id}(id=${element.getId()})}">Удалить из корзины</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="total">
+    <h3 th:text="'Итоговая стоимость товаров: ' + ${priceCart}"></h3>
+    <a class="button" href="/order/create">Оформить заказ</a>
+</div>
+</body>
+</html>

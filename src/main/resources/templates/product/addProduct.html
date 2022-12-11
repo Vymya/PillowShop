@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/adminProduct.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+    <title>Добавление товаров</title>
+</head>
+<body>
+
+<div class="menu">
+  <p class="logo">Кабинет администратора</p>
+  <a class="button" th:href="@{/admin/order/search}">Поиск заказов</a>
+  <a class="button" href="/admin/product/add">Добавить товары</a>
+  <form method="post" th:action="@{/logout}">
+    <input  class="button" type="submit" value="Выйти из личного кабинета">
+  </form>
+</div>
+<div class="back">
+  <a class="button" href="/admin">Вернуться в админ. панель</a>
+</div>
+
+
+  <h3>Добавление товаров</h3>
+<div class="authAdmin">
+  <form th:method="post" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data">
+    <label for="title">Введите название: </label>
+    <input class="inputAdmin" type="text" th:field="*{title}" placeholder="Название" id="title">
+      <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+
+    <label for="category">Выберите категорию товара: </label>
+    <select name="category" th:field="*{category}" id="category">
+      <div th:each="element : ${category}">
+        <option th:text="${element.getName()}" th:value="${element.getId()}"></option>
+      </div>
+    </select>
+<br><br>
+    <label for="description">Введите описание: </label>
+      <br>
+    <textarea class="inputAdmin" th:field="*{description}" placeholder="Описание" id="description"></textarea>
+      <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+    <br>
+    <label for="price">Введите цену: </label>
+    <input class="inputAdmin" type="number" th:field="*{price}" min="1" step="0.0" id="price">
+      <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+
+    <label for="seller">Выберите продавца: </label>
+    <input class="inputAdmin" type="text" th:field="*{seller}" placeholder="Продавец" id="seller">
+      <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+
+    <label for="warehouse">Выберите склад: </label>
+    <input class="inputAdmin" type="text" th:field="*{warehouse}" placeholder="Склад" id="warehouse">
+      <div style="color: red" th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
+
+
+    <p style="color: red">Можно добавить до 5 фотографий</p>
+    <div class="buttonGrid">
+    <input class="button" type="file" name="fileOne">
+    <input class="button" type="file" name="fileTwo">
+    <input class="button" type="file" name="fileThree">
+    <input class="button" type="file" name="fileFour">
+    <input class="button" type="file" name="fileFive">
+    <input class="button" type="submit" value="Добавить">
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
