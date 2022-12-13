@@ -160,3 +160,12 @@ a{
     grid-template-columns: 1fr;
     margin: 30px 5%;
 }
+
+.menuMainPage {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 20px;
+    margin: 0px 1%;
+}

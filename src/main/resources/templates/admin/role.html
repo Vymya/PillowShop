@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/adminProduct.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/productGrid.css}" type="text/css">
+  <title>Редактирование ролей</title>
+</head>
+<body>
+<h3>Редактирование роли пользователя: </h3>
+<form th:method="post" th:action="@{/admin/roles/edit/{id}(id=${personId.getId()})}" th:object="${personId}">
+  <p th:text="'Логин: ' + ${personId.getLogin()}"></p>
+  <p th:text="'Роль: ' + ${personId.getRole()}"></p>
+  <select name="role" th:field="*{role}" id="role">
+    <div th:each="element : ${persons}">
+      <option th:text="${element.getRole()}" th:value="${element}"></option>
+    </div>
+  </select>
+  <hr>
+  <input type="submit" value="Изменить роль">
+</form>
+</div>
+</body>
+</html>

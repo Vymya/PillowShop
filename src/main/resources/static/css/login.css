@@ -65,6 +65,26 @@ input.button{
     color: #fff;
 }
 
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload
+{
+    display: block;
+    width: 17vw;
+    margin: 20px 0px;
+    height: 45px;
+    border: 0;
+    background-color: #1cbc11;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    color: #fff;
+    padding: 13px 0px;
+}
+
+
 input.button:hover {
     background-color: #14a20a;
 }

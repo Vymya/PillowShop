@@ -47,7 +47,7 @@
     <p class="text" th:text="'Статус заказа: ' + ${element.getOrderStatus()}"></p>
 
     <div class="buttonGrid">
-    <a class="adminEditOrder1" th:href="@{admin/order/edit/{id}(id=${element.getId()})}">Изменить статус заказа</a>
+    <a class="adminEditOrder1" th:href="@{edit/{id}(id=${element.getId()})}">Изменить статус заказа</a>
     </div>
   </div>
 </div>

@@ -3,10 +3,12 @@ package com.example.springsecurityapplication.controllers.admin;
 import com.example.springsecurityapplication.enumm.OrderStatus;
 import com.example.springsecurityapplication.models.Image;
 import com.example.springsecurityapplication.models.Order;
+import com.example.springsecurityapplication.models.Person;
 import com.example.springsecurityapplication.models.Product;
 import com.example.springsecurityapplication.repositories.CategoryRepository;
 import com.example.springsecurityapplication.repositories.OrderRepository;
 import com.example.springsecurityapplication.services.OrderService;
+import com.example.springsecurityapplication.services.PersonService;
 import com.example.springsecurityapplication.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,14 +32,17 @@ public class AdminController {
     private final ProductService productService;
     private final OrderService orderService;
 
+    private final PersonService personService;
+
     //обращение к репозиторию категорий, но вообще надо было делать сервис, как для товаров выше
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
 
     @Autowired
-    public AdminController(ProductService productService, OrderService orderService, CategoryRepository categoryRepository, OrderRepository orderRepository) {
+    public AdminController(ProductService productService, OrderService orderService, PersonService personService, CategoryRepository categoryRepository, OrderRepository orderRepository) {
         this.productService = productService;
         this.orderService = orderService;
+        this.personService = personService;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
     }
@@ -188,6 +193,31 @@ public class AdminController {
 
     @Value("${upload.path}")
     private String uploadPath;
+
+    //страница с ролями
+    @GetMapping("/roles")
+    public String role(Model model) {
+        model.addAttribute("persons", personService.getAllPerson());
+        return "/admin/role";
+    }
+
+    //страница с формой редактирования ролей
+    @GetMapping("/roles/edit/{id}")
+    public String editRole(Model model, @PathVariable("id") int id) {
+        model.addAttribute("persons", personService.getAllPerson());
+        model.addAttribute("personId", personService.getPersonId(id));
+        return "/admin/editRole";
+    }
+
+
+    //страница с формой редактирования роли юзера
+    @PostMapping("/roles/edit/{id}")
+    public String editRole(@ModelAttribute("role") @Valid Person person, @PathVariable("id") int id, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "admin/role";
+        personService.updatePerson(id, person);
+        return "redirect:/admin/roles";
+    }
 
 
 }
